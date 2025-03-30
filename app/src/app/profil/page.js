@@ -1,7 +1,8 @@
 'use client';
 import { useEffect, useState } from 'react';
 import PocketBase from 'pocketbase';
-import { FiUser, FiSettings, FiShield, FiAlertTriangle, FiLogOut } from 'react-icons/fi';
+import { FiUser, FiSettings, FiShield, FiAlertTriangle, FiLogOut, FiHome } from 'react-icons/fi';
+import Link from 'next/link';
 
 export default function ProfilePage() {
   const [userData, setUserData] = useState(null);
@@ -11,7 +12,7 @@ export default function ProfilePage() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const pb = new PocketBase('http://192.168.0.147:8090');
+        const pb = new PocketBase('http://192.168.0.148:8090');
         
         // Sprawdź czy użytkownik jest zalogowany
         if (!pb.authStore.isValid) {
@@ -34,7 +35,7 @@ export default function ProfilePage() {
   }, []);
 
   const handleLogout = () => {
-    const pb = new PocketBase('http://192.168.0.147:8090');
+    const pb = new PocketBase('http://192.168.0.148:8090');
     pb.authStore.clear();
     window.location.href = '/login';
   };
@@ -61,7 +62,7 @@ export default function ProfilePage() {
   // Renderowanie w zależności od roli
   const renderProfileByRole = () => {
     switch(userData?.rola) {
-      case 'super_admin':
+      case 'sadmin':
         return (
           <div className="bg-purple-50 border-l-4 border-purple-500 p-4 mb-6">
             <h2 className="text-xl font-bold text-purple-800 flex items-center">
@@ -129,12 +130,20 @@ export default function ProfilePage() {
                   {userData?.rola || 'user'}
                 </div>
               </div>
-              <button
-                onClick={handleLogout}
-                className="mt-4 sm:mt-0 flex items-center px-4 py-2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg transition"
-              >
-                <FiLogOut className="mr-2" /> Wyloguj się
-              </button>
+              <div className="flex flex-col sm:flex-row gap-2 mt-4 sm:mt-0">
+                <Link 
+                  href="/dashboard" 
+                  className="flex items-center px-4 py-2 bg-indigo-500 bg-opacity-20 hover:bg-opacity-30 rounded-lg transition"
+                >
+                  <FiHome className="mr-2" /> Strona główna
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center px-4 py-2 bg-red-500 bg-opacity-20 hover:bg-opacity-30 rounded-lg transition"
+                >
+                  <FiLogOut className="mr-2" /> Wyloguj się
+                </button>
+              </div>
             </div>
           </div>
 

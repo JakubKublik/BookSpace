@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import PocketBase from 'pocketbase';
@@ -50,6 +50,8 @@ export default function RegisterPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+
+
     
     // Validation
     if (formData.password !== formData.passwordConfirm) {
@@ -64,7 +66,7 @@ export default function RegisterPage() {
     setIsLoading(true);
 
     try {
-      const pb = new PocketBase('http://192.168.0.147:8090');
+      const pb = new PocketBase('http://192.168.0.148:8090');
 
       // Register in "users" collection
       await pb.collection('users').create({
@@ -81,7 +83,7 @@ export default function RegisterPage() {
 
       // Auto-login after registration
       await pb.collection('users').authWithPassword(formData.email, formData.password);
-      router.push('/profil');
+      router.push('/dashboard');
     } catch (err) {
       console.error('Registration error:', err);
       setError(err.message || 'Wystąpił problem podczas rejestracji');

@@ -13,7 +13,7 @@ export default function LoginPage() {
 
   // Resetowanie sesji na początku
   useEffect(() => {
-    const pb = new PocketBase('http://192.168.0.147:8090');
+    const pb = new PocketBase('http://192.168.0.148:8090');
     pb.authStore.clear();
     document.cookie = 'pb_auth=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     localStorage.removeItem('pocketbase_auth');
@@ -25,9 +25,9 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
-      const pb = new PocketBase('http://192.168.0.147:8090');
+      const pb = new PocketBase('http://192.168.0.148:8090');
       await pb.collection('users').authWithPassword(email.trim(), password.trim());
-      router.push('/profil');
+      router.push('/dashboard');
     } catch (err) {
       setError('Nieprawidłowe dane logowania. Spróbuj ponownie.');
     } finally {
