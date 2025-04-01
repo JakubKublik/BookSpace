@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import PocketBase from 'pocketbase';
 import { FiUser, FiLock, FiMail, FiArrowRight, FiBook } from 'react-icons/fi';
 
+
 const bookGenres = [
   'Fantastyka',
   'Science Fiction',
@@ -280,7 +281,7 @@ export default function RegisterPage() {
 
         {/* Footer */}
         <div className="mt-6 text-center text-xs text-gray-500">
-          © {new Date().getFullYear()} Twoja Aplikacja. Wszystkie prawa zastrzeżone.
+          © {new Date().getFullYear()}  Wszystkie prawa zastrzeżone.
         </div>
       </div>
     </div>

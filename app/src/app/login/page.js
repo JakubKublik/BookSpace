@@ -132,7 +132,7 @@ export default function LoginPage() {
 
         {/* Stopka */}
         <div className="mt-6 text-center text-xs text-gray-500">
-          © {new Date().getFullYear()} Twoja Aplikacja. Wszystkie prawa zastrzeżone.
+          © {new Date().getFullYear()}  Wszystkie prawa zastrzeżone.
         </div>
       </div>
     </div>

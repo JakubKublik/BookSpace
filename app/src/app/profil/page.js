@@ -4,6 +4,7 @@ import PocketBase from 'pocketbase';
 import { FiUser, FiSettings, FiShield, FiAlertTriangle, FiLogOut, FiHome } from 'react-icons/fi';
 import Link from 'next/link';
 
+
 export default function ProfilePage() {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
